@@ -1,0 +1,44 @@
+<!--edit.ejs-->
+<% include ../partials/header.ejs %>
+<% include ../partials/navigationBar.ejs %> 
+<!-- Body Container -->
+
+<div class="container">
+    <div class="row">
+            <h1><%= title %></h1>
+            <div class="col-md-7">
+
+            <form method="post">
+                <div class="form-group">
+                    <label for="NameTextField">Name:</label>
+                    <input Name="name" type="text" class="form-control" id="NameTextField" 
+                            placeholder="Name" value="<%= contacts.name %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="PositionTextField">Position:</label>
+                    <input Name="position" type="text" class="form-control" id="PositionTextField" 
+                            placeholder="Position" value="<%= contacts.position %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="CompanyTextField">Company:</label>
+                    <input Name="company" type="text" class="form-control" id="CompanyTextField"
+                             placeholder="Company" value="<%= contacts.company %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="AddressTextField">Address:</label>
+                    <input Name="address" type="text" class="form-control" id="AddressTextField" 
+                            placeholder="Address" value="<%= contacts.address %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="ContactTextField">Contact:</label>
+                    <input Name="contact" type="text" class="form-control" id="ContactTextField" 
+                            placeholder="Contact" value="<%= contacts.contact %>" required>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            </div>
+    </div>
+</div>
+
+<!-- Body Container End-->
+<% include ../partials/footer.ejs %>

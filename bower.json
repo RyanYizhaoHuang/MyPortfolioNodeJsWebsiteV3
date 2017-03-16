@@ -1,0 +1,27 @@
+{
+  "name": "myportfolionodejswebsite",
+  "description": "Ryan Huang's Web Portfolio",
+  "main": "server.js",
+  "authors": [
+    "Ryan Huang"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "NodeJs",
+    "ExpressJS",
+    "CentennialCollege"
+  ],
+  "homepage": "https://github.com/RyanYizhaoHuang/Ryan-Huang-NodeJs-Express-PortfolioV2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/script/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "bootstrap": "3.3.7"
+  }
+}

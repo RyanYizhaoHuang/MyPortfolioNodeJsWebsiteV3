@@ -1,0 +1,41 @@
+<!--businesscontact.ejs-->
+<% include ../partials/header.ejs %>
+<% include ../partials/navigationBar.ejs %> 
+<!-- Body Container -->
+
+<div class="container">
+    <div class="row">
+            <h1><%= title %></h1>
+
+            <div class="row" style="margin-bottom:8px">
+            <a class="btn btn-success" href="/businesscontact/add"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Contact</a>
+            </div>
+
+            <table class="table table-hover">
+            <tr  class="bg-success  text-success">
+                <th>Name</th>
+                <th>Position</th>
+                <th>Company</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% for (let count = 0; count < contacts.length; count++) { %>
+            <tr class="text-primary">
+                <td><%= contacts[count].name %></td>
+                <td><%= contacts[count].position %></td>
+                <td><%= contacts[count].company %></td>
+                <td><%= contacts[count].address %></td>
+                <td><%= contacts[count].contact %></td>
+                <td class="text-center"><a class="btn btn-primary" href="/businesscontact/<%= contacts[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                <td class="text-center"><a class="btn btn-danger" href="/businesscontact/delete/<%= contacts[count]._id %>" role="button"><i class="fa fa-trash-o"></i> Delete</a></td>
+            </tr>
+            <% } %>
+            </table>
+    </div>
+</div>
+
+
+<!-- Body Container End-->
+<% include ../partials/footer.ejs %>

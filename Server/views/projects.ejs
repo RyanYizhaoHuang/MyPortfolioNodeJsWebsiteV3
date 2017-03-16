@@ -1,0 +1,37 @@
+<!--Projects.ejs-->
+<% include partials/header.ejs %>
+<% include partials/navigationBar.ejs %> 
+
+    <!-- Body Conatiner -->
+    <div class="container">
+
+        <% include partials/Jumbotron.ejs %>
+        <!-- project list container-->
+        <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            <img class="img-rounded" src="asset/images/passwordApp.png" alt="Generic placeholder image" width="250" height="250">
+            <h2>Password Manager </h2>
+            <p>Password Manager Application that enables users to store and fetch their user names and passwords. It is a Window application implemented by C# and Window Form. The backend database is Microsoft SQL Server.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-md-4">
+            <img class="img-rounded" src="asset/images/foodOrder.png" alt="Generic placeholder image" width="250" height="250">
+            <h2>Food Order</h2>
+            <p>Food Order App is an Android mobile app that provides user a convenience way to order food from different restaurants. The user can select different kinds of cuisine. Based on the cuisine, user can check the information of 
+            the restaurants include location indicator in Google map.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-md-4">
+            <img class="img-rounded" src="asset/images/hillsideClinic_round.png" alt="Generic placeholder image" width="250" height="250">
+            <h2>HillSide Clinic</h2>
+            <p>HillSide Clinic app is Android Platform mobile app for Clinic. It enable document and nurse to login to the app and manage patients’ data. It uses SQLite database at the backend to store patients’ data (Such as: Blood test result, Blood pressure, Heart rate) locally.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div>
+        </div>
+        <!-- end project list container-->    
+    
+    </div>
+    <!-- Body Continer End -->
+<% include partials/footer.ejs %>
