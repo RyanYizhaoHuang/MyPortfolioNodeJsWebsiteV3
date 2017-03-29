@@ -32,7 +32,7 @@ module.exports.ProcessLogin = () =>
 {
     return passport.authenticate('local',{
     successRedirect :'/businesscontact',
-    failureRedirect: '/login',
+    failureRedirect: '/users/login',
     failureFlash:true
 })
 }
@@ -99,7 +99,7 @@ module.exports.RequireAuth = (req,res,next) =>
   //check if the user is login
   if(!req.isAuthenticated())
   {
-    return res.redirect('/login');
+    return res.redirect('/users/login');
   }
   next();
 }

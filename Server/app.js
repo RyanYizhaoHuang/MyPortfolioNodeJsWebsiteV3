@@ -40,7 +40,7 @@ db.once('open',()=>{
 
 let index = require('./routes/index');  //wildcard route
 let bussinesscontact = require('./routes/contact.js'); //busniess contact route
-let users = require('./routes/users');
+let users = require('./routes/users'); //routes for users and auth
 
 var app = express();
 
@@ -69,9 +69,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //route redirects
-app.use('/', index);
-app.use('/businesscontact',bussinesscontact);
-app.use('/users', users);
+app.use('/', index); //top level links
+app.use('/businesscontact',bussinesscontact); //businesscontact links - start with /businesscontact
+app.use('/users', users); // users link - start with /users
 
 // User Configuration
 let UserModel = require('./Models/users');
@@ -79,7 +79,7 @@ let User = UserModel.User;
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());  //passport local mongoose
-passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser()); 
 
 //Handle 404 errors
 app.use(function(req,res){

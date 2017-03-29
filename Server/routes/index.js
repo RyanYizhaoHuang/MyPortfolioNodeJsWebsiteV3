@@ -20,7 +20,6 @@ let contacts = require('../Models/businessContact');
 
 //import controller
 let indexController = require('../controller/index');
-let userController = require('../controller/user');
 
 
 
@@ -49,23 +48,6 @@ router.get('/services', (req, res, next) => {
   indexController.DisplayServices(req,res);
 });
 
-//login - redger the login view 
-router.get('/login',(req,res,next) =>{
-  userController.DisplayLogin(req,res);
-  // Post /login - process the login page  -- handle the login feature
-}).post('/login', userController.ProcessLogin());
 
-// get /register - render the 
-router.get('/register',(req,res,next)=>{
-  userController.DisplayRegistration(req,res);
-  //post /register - process the registration view
-}).post('/register',(req,res,next)=>{
-  userController.ProcessRegistration(req,res);
-});
-
-// get /logout - logout the user and redirect to the home page
-router.get('/logout',(req,res,next)=>{
-  userController.ProcessLogout(req,res);
-});
 
 module.exports = router;
