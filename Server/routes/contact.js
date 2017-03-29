@@ -10,11 +10,17 @@ let passport = require('passport');
 //create the bussinessContent object - represents a document in the bussinessContact collection
 let contacts = require('../Models/businessContact');
 
+//import userController for authentication
+let userController = require('../controller/user');
+//import contactController
+let contactController = require('../controller/businesscontact');
+
 //define the user Models
 let UserModel = require('../Models/users');
 let User = UserModel.User; //alias for User
 
 //function to check if the user is authenticated
+/* Move to userController
 function requireAuth(req,res,next)
 {
   //check if the user is login
@@ -24,141 +30,40 @@ function requireAuth(req,res,next)
   }
   next();
 }
+*/
+
 //Get business contact page
-router.get('/',requireAuth,(req,res,next)=>{
+router.get('/',userController.RequireAuth,(req,res,next)=>{
 
-  //find all business contact
-  contacts.find((err,contacts) =>{
-
-    if(err)
-    {
-      return console.error(err);
-    }
-    else
-    {
-      console.log("Here is the contacts: %j", contacts );
-      res.render('contact/index',{
-        title:'Business Contact',
-        contacts: contacts,
-        displayName: req.user ? req.user.displayName : ''
-      });
-    }
-  });
+  contactController.DisplayContactList(req,res);
+  
 });
 
 // Get add page - 
-router.get('/add',requireAuth,(req,res,next)=>{
-  res.render('contact/details',{
-    title:'Add a new Contact',
-    contacts:'',
-    displayName: req.user ? req.user.displayName : ''
-  });
+router.get('/add',userController.RequireAuth,(req,res,next)=>{
+  
+  contactController.DisplayAddContact(req,res);
+
 });
 
 // Post add - save new business contact 
-router.post('/add',requireAuth,(req,res,next)=>{
-
-  contacts.create({
-    name: req.body.name,
-    position:req.body.position,
-    company: req.body.company,
-    address:req.body.address,
-    contact:req.body.contact
-  },(error,contacts)=> {
-    if(error){
-      console.log(error);
-      res.end(err);
-    }
-    else
-    {
-      res.redirect('/businesscontact');
-    }
-  });
+router.post('/add',userController.RequireAuth,(req,res,next)=>{
+    contactController.CreateContact(req,res);
+  
 });
 
 // Get edit - show business contact to be edited  
-router.get('/:id',requireAuth,(req,res,next)=>{
-
-try {
-  
-    //get a reference to the id of the contact to edit
-    //let mongoose convert id to a HexString, if yes go to next if can not convert go to catech
-    let id = mongoose.Types.ObjectId.createFromHexString(req.params.id);
-      //find business contact by id
-      contacts.findById(id,(err,contacts) =>{
-
-        if(err)
-        {
-          console.error(err);
-          res.end(error);
-        }
-        else
-        {
-          console.log("Here is the contacts: %j", contacts );
-          res.render('contact/details',{
-            title:'Business Contact',
-            contacts: contacts,
-            displayName: req.user ? req.user.displayName : ''
-          });
-        }
-      });
-  } catch (error) {
-      console.log(error);
-      res.redirect('/errors/404');
-}
-});
-
-
-// Post edit - save business contact be edited  
-router.post('/:id',requireAuth,(req,res,next)=>{
-
-//get a reference to the id of the contact to edit
-let id = req.params.id;
-// create a new contact object to hold the changes
-let contact = new contacts(
-    {
-        _id: id,
-        name: req.body.name,
-        position:req.body.position,
-        company: req.body.company,
-        address:req.body.address,
-        contact:req.body.contact
-    }
-);
-
-//save contact object
-contacts.update({_id:id},contact,(err)=>{
-
-        if(err)
-        {
-            console.log(err);
-            res.end(error);
-        }
-        else
-        {
-            //refresh the contact list
-            res.redirect('/businesscontact');
-        }
-    });
+router.get('/:id',userController.RequireAuth,(req,res,next)=>{
+  contactController.DisplayEdit(req,res);
+  // Post edit - save business contact be edited 
+}).post('/:id',userController.RequireAuth,(req,res,next)=>{
+contactController.UpdateContact(req,res);
 
 });
 
 //delete by id
-router.get('/delete/:id',requireAuth,(req,res,next)=>{
-  
-  //get a reference to the id of the contact
-  let id = req.params.id;
-  contacts.remove({_id: id}, (err) =>{
-    if(err)
-    {
-      console.log(err);
-      res.end(err);
-    }
-    else
-    {
-      res.redirect('/businesscontact');
-    }
-  });
+router.get('/delete/:id',userController.RequireAuth,(req,res,next)=>{
+  contactController.DeleteContact(req,res); 
 });
 
 module.exports = router;
