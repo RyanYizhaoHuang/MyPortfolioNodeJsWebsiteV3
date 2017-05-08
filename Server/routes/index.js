@@ -43,6 +43,11 @@ router.get('/projects', (req, res, next) => {
   indexController.DisplayProject(req,res);
 });
 
+// Get project detail page
+router.get('/projects/detail',(req,res,next) =>{
+  indexController.DisplayProjectDetail(req,res);
+});
+
 //Get services page
 router.get('/services', (req, res, next) => {
   indexController.DisplayServices(req,res);

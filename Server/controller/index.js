@@ -60,3 +60,13 @@ module.exports.DisplayServices = (req,res) =>
     contacts :''
   });
 }
+
+
+//Display projects detail page
+module.exports.DisplayProjectDetail = (req,res) =>
+{
+  res.render('projects/detail',{
+    title: "Ryan's Project",
+    displayName: req.user ? req.user.displayName : ''
+  });
+}
